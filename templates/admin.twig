@@ -1,0 +1,22 @@
+Пользователи:<br>
+id | email | phone<br><hr>
+{% for user in users %}
+  {{ user.id }} |
+  {{ user.email }} |
+  {{ user.phone }}<br>
+{% endfor %}
+<hr>
+Заказы:<br>
+id | user_id | street | home | appt | floor | comment | payment | callback<br><hr>
+{% for order in orders %}
+  {{ order.id }} |
+  {{ order.user_id }} |
+  {{ order.street }} |
+  {{ order.home }} |
+  {{ order.appt }} |
+  {{ order.floor }} |
+  {{ order.comment }} |
+  {{ order.payment }} |
+  {{ order.callback }}<br>
+{% endfor %}
+<hr>
