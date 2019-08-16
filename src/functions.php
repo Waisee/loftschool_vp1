@@ -86,7 +86,21 @@ function sendEmail(array $order, array $user, int $count)
     $street = $order['street'];
     $home = $order['home'];
     $appt = $order['appt'];
-    $message = "Ваш заказ DarkBeefBurger за 500 рублей, 1 шт. будет доставлен по адресу: улица:$street, дом: $home, кв.: $appt, <br> $amount";
+    $order_id = $order['id'];
+    $user_email = $user['email'];
+    $message = "Ваш заказ DarkBeefBurger за 500 рублей, 1 шт. будет доставлен по адресу: улица:$street, дом: $home, кв.: $appt, $amount";
 
-    mail($user['email'], $order['id'], $message);
+    $transport = (new Swift_SmtpTransport('smtp.mail.ru', 465, 'ssl'))
+        ->setUsername('examle.waisee@bk.ru')
+        ->setPassword('loftschool123')
+    ;
+    $mailer = new Swift_Mailer($transport);
+
+    $email = (new Swift_Message())
+        ->setSubject("$order_id")
+        ->setFrom(['examle.waisee@bk.ru' => 'examle.waisee@bk.ru'])
+        ->setTo("$user_email")
+        ->setBody("$message")
+    ;
+    return $result = $mailer->send($email);
 }

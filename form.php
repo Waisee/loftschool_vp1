@@ -1,7 +1,7 @@
 <?php
 
-require_once 'db.php';
-require_once 'functions.php';
+require_once 'init.php';
+
 
 $name = $_GET['name'];
 $phone = $_GET['phone'];
